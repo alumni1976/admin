@@ -3,12 +3,14 @@ import { renderLoginPage } from "./pages/login.js";
 import { renderEventRegistrationsPage } from "./pages/event-registrations.js";
 import { renderEventSummaryPage } from "./pages/event-summary.js";
 import { renderEventExportsPage } from "./pages/event-exports.js";
+import { renderMetricsPage } from "./pages/metrics.js";
 
 const routes = {
   login: renderLoginPage,
   "event-registrations": renderEventRegistrationsPage,
   "event-summary": renderEventSummaryPage,
-  "event-exports": renderEventExportsPage
+  "event-exports": renderEventExportsPage,
+  "metrics": renderMetricsPage
 };
 
 export function getRoute() {
