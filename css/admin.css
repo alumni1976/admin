@@ -80,23 +80,28 @@ body {
 
 .admin-menu {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
 }
 
 .admin-menu-group {
   position: relative;
-  padding-bottom: 10px;
-  margin-bottom: -10px;
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
 .admin-menu-button,
 .admin-menu-link {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.10);
+  color: #ffffff;
   padding: 9px 12px;
   border-radius: 999px;
   text-decoration: none;
@@ -104,64 +109,75 @@ body {
   font-weight: 700;
   letter-spacing: 0.03em;
   cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .admin-menu-button:hover,
 .admin-menu-link:hover,
 .admin-menu-link.active {
-  background: rgba(184, 148, 74, 0.25);
-  border-color: rgba(214, 184, 111, 0.9);
+  background: rgba(184, 148, 74, 0.28);
+  border-color: rgba(214, 184, 111, 0.95);
 }
 
 .admin-menu-button::after {
-  content: " ▾";
+  content: " ▸";
   color: var(--gold-light);
 }
 
-
-/* Keep dropdown reachable while moving the mouse from parent to submenu */
-.admin-menu-group::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  height: 10px;
-}
-
+/* Sub-items are intentionally always visible for direct access. */
 .admin-submenu {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  z-index: 1000;
-  min-width: 230px;
-  background: #fff;
-  border: 1px solid var(--border);
+  display: flex !important;
+  position: static !important;
+  z-index: auto;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(214, 184, 111, 0.38);
   border-radius: 14px;
-  box-shadow: var(--shadow);
-  padding: 8px;
-  gap: 4px;
-}
-
-.admin-menu-group:hover .admin-submenu,
-.admin-menu-group:focus-within .admin-submenu {
-  display: grid;
+  box-shadow: none;
+  padding: 6px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .admin-submenu a {
-  color: var(--text);
+  color: #fff7dc !important;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.20);
   text-decoration: none;
-  padding: 10px 12px;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 650;
+  padding: 8px 11px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 750;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 .admin-submenu a:hover,
 .admin-submenu a.active {
-  background: var(--cream);
-  color: #7b5a16;
+  background: var(--gold-light) !important;
+  border-color: #ffffff;
+  color: var(--navy) !important;
+}
+
+@media (max-width: 860px) {
+  .admin-header-inner {
+    align-items: flex-start;
+  }
+
+  .admin-menu {
+    max-width: none;
+    margin-left: 0;
+  }
+
+  .admin-menu-group {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .admin-submenu {
+    margin-left: 12px;
+  }
 }
 
 .admin-app {
