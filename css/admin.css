@@ -141,23 +141,12 @@ body {
   border-radius: 14px;
   box-shadow: var(--shadow);
   padding: 8px;
+  gap: 4px;
 }
 
 .admin-menu-group:hover .admin-submenu,
-.admin-menu-group:focus-within 
-/* Keep dropdown reachable while moving the mouse from parent to submenu */
-.admin-menu-group::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  height: 10px;
-}
-
-.admin-submenu {
+.admin-menu-group:focus-within .admin-submenu {
   display: grid;
-  gap: 4px;
 }
 
 .admin-submenu a {
@@ -526,4 +515,133 @@ tbody tr:hover {
 
 .muted {
   color: var(--muted);
+}
+
+/* ── Metrics page ─────────────────────────────────────────────────────────── */
+
+.metrics-source-section {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: 0 10px 26px rgba(20, 26, 40, 0.08);
+  padding: 22px 24px;
+  margin-bottom: 22px;
+}
+
+.metrics-source-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--border);
+}
+
+.metrics-source-header h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.metrics-source-header--supabase { border-bottom-color: #3ecf8e33; }
+.metrics-source-header--supabase h2 { color: #166534; }
+
+.metrics-source-header--github { border-bottom-color: #1f6feb33; }
+.metrics-source-header--github h2 { color: #1d4ed8; }
+
+.metrics-source-header--cloudinary { border-bottom-color: #f5a62333; }
+.metrics-source-header--cloudinary h2 { color: #92400e; }
+
+.metrics-source-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.metrics-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.metric-card {
+  background: #f6f8fc;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.metric-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.metric-card strong {
+  display: block;
+  color: var(--navy);
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.metric-card--supabase { border-left: 3px solid #3ecf8e; }
+.metric-card--github   { border-left: 3px solid #1f6feb; }
+.metric-card--cloudinary { border-left: 3px solid #f5a623; }
+
+/* Progress bars */
+
+.metrics-progress-wrap {
+  display: grid;
+  gap: 14px;
+}
+
+.metrics-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.metrics-progress-label strong {
+  font-size: 0.95rem;
+  color: var(--navy);
+}
+
+.metrics-progress-track {
+  height: 10px;
+  background: #e8eaf0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.metrics-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.metrics-progress-fill--ok     { background: var(--ok); }
+.metrics-progress-fill--warn   { background: #d97706; }
+.metrics-progress-fill--danger { background: var(--danger); }
+
+.metrics-progress-sub {
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+@media (max-width: 760px) {
+  .metrics-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
