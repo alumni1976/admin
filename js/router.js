@@ -4,13 +4,17 @@ import { renderEventRegistrationsPage } from "./pages/event-registrations.js";
 import { renderEventSummaryPage } from "./pages/event-summary.js";
 import { renderEventExportsPage } from "./pages/event-exports.js";
 import { renderMetricsPage } from "./pages/metrics.js";
+import { renderThinktankPostsPage } from "./pages/thinktank-posts.js";
+import { renderThinktankCommentsPage } from "./pages/thinktank-comments.js";
 
 const routes = {
   login: renderLoginPage,
   "event-registrations": renderEventRegistrationsPage,
   "event-summary": renderEventSummaryPage,
   "event-exports": renderEventExportsPage,
-  "metrics": renderMetricsPage
+  "metrics": renderMetricsPage,
+  "thinktank-posts": renderThinktankPostsPage,
+  "thinktank-comments": renderThinktankCommentsPage
 };
 
 export function getRoute() {
