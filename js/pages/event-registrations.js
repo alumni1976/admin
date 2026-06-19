@@ -128,7 +128,7 @@ function makeTable(rows) {
                 <td><span class="badge ${meal === "yes" ? "ok" : "no"}">${meal === "yes" ? "YES" : "NO"}</span></td>
                 <td>${escapeHtml(row.attendance_status || "")}</td>
                 <td><span class="badge ${row.confirmation_sent ? "ok" : "no"}">${row.confirmation_sent ? "YES" : "NO"}</span></td>
-                <td>${escapeHtml(row.comments || "")}</td>
+                <td>${makeCollapsible(row.comments)}</td>
               </tr>
             `;
           }).join("")}
@@ -180,6 +180,34 @@ function formatDateOnly(value) {
     return value;
   }
 }
+
+let _collapsibleId = 0;
+
+function makeCollapsible(value, maxLength = 160) {
+  const text = String(value || "").trim();
+  if (!text) return "<span class=\"muted\">\u2013</span>";
+  if (text.length <= maxLength) return "<span class=\"comment-cell\">" + escapeHtml(text) + "</span>";
+  const id = "cmnt-" + (++_collapsibleId);
+  const preview = escapeHtml(text.slice(0, maxLength).trimEnd() + "\u2026");
+  const full = escapeHtml(text);
+  return (
+    "<span class=\"comment-cell\">" +
+    "<span id=\"" + id + "-short\">" + preview +
+    " <button class=\"btn-link\" onclick=\"toggleComment('" + id + "')\">\u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b1</button></span>" +
+    "<span id=\"" + id + "-full\" style=\"display:none\">" + full +
+    " <button class=\"btn-link\" onclick=\"toggleComment('" + id + "')\">\u03bb\u03b9\u03b3\u03cc\u03c4\u03b5\u03c1\u03b1</button></span>" +
+    "</span>"
+  );
+}
+
+window.toggleComment = function(id) {
+  var shortEl = document.getElementById(id + "-short");
+  var fullEl  = document.getElementById(id + "-full");
+  if (!shortEl || !fullEl) return;
+  var isShowing = fullEl.style.display !== "none";
+  shortEl.style.display = isShowing ? "" : "none";
+  fullEl.style.display  = isShowing ? "none" : "";
+};
 
 function shortText(value, maxLength = 90) {
   const text = String(value || "").trim();
